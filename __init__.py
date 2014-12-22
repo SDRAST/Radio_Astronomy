@@ -3,8 +3,10 @@ Pseudo front end for IFs coming from wherever
 """
 import logging
 
-from Observatory_classes import FrontEnd, Port
-from Observatory_classes import Beam, ComplexSignal, IF
+from MonitorControl import Port, Beam, ComplexSignal, IF
+from MonitorControl.FrontEnds import FrontEnd
+
+module_logger = logging.getLogger(__name__)
 
 class SignalSources(FrontEnd):
   """
@@ -28,7 +30,9 @@ class SignalSources(FrontEnd):
     @param output_names : name for the output port in a list
     @type  output_names : list of str
     """
+    mylogger = logging.getLogger(module_logger.name+".SignalSources")
     FrontEnd.__init__(self, name, inputs=inputs, output_names=output_names)
+    self.logger = mylogger
     self.data['frequency'] = 0.320 # GHz
     self.data['bandwidth'] = 0.640
     self.channel={}
