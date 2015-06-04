@@ -75,3 +75,34 @@ class SignalSources(FrontEnd):
       self.outputs[name].signal['frequency'] = parent['frequency']*1e9 # Hz
       self.outputs[name].signal['bandwidth'] = parent['bandwidth']*1e9 # Hz
       parent.outputs[name] = self.outputs[name]
+
+class DSNfeSX(FrontEnd):
+  """
+  The DSN S/X receiver
+  """
+  def __init__(self, name, inputs=None, output_names=None):
+    """
+    """
+    self.name = name
+    mylogger = logging.getLogger(module_logger.name+".SX_fe")
+    mylogger.debug(" initializing %s", self)
+    mylogger.debug(" %s input channels: %s", self, str(inputs))
+    mylogger.debug(" output names: %s", output_names)
+    FrontEnd.__init__(self, name, inputs=inputs, output_names=output_names)
+    self.logger = mylogger
+    self.channel = {}
+    keys = self.inputs.keys()
+    keys.sort()
+    for feed in keys:
+      index = keys.index(feed)
+      beam_signal = Beam(feed)
+      for prop in self.data.keys():
+        beam_signal.data[prop] = self.data[prop]
+      #beam_signal.name = feed
+      self.channel[feed] = self.Channel(self, feed,
+                                        inputs={feed: self.inputs[feed]},
+                                        output_names=output_names[index],
+                                        signal=beam_signal)
+    self.logger.debug("%s output channels: %s", self, str(self.outputs))
+    
+    
