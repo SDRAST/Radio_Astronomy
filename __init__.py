@@ -57,13 +57,48 @@ Left-overs::
    freq_to_chan(frequency,bandwidth,n_chans)
 
 """
-import Physics
 import math
+try:
+  import Physics
+  from Physics import c, wavenumber
+  from Physics.Radiation.Continuum import BB_intensity
+  
+  def janskyPQ(Jy):
+    """
+    jansky unit (Jy) as a PhysicalQuantity() class instance
+
+    @param Jy : quantity expressed in Jy
+    @type  Jy : float
+
+    @return: PhysicalQuantity instance
+    """
+    return Physics.pq(Jy*1e-26,"W") \
+          /Physics.pq(1,'m')/Physics.pq(1,'m') \
+          /Physics.pq(1,'Hz')
+
+  Jy = janskyPQ(1).getValue()
+except ImportError:
+  Jy = 1e-26
+  c = 299792458.0
+  class Physics:
+    c = 299792458.0
+    h = 6.6260755e-34
+    k = 1.380658e-23
+  def wavenumber(wvln):
+    return 1./wvln
+  def BB_intensity(T,f):
+    left_term = 2*h*math.pow(f,3)/math.pow(c,2)
+    exponent = h*f/k/T
+    if exponent < 700:
+      right_term = math.pow(math.e,exponent) - 1
+      result = left_term/right_term
+    else:
+      result = 1e-304
+    return result
+
 import numpy
 import sys
 from scipy.special import sici
-from Physics import c, wavenumber
-from Physics.Radiation.Continuum import BB_intensity
 
 euler = 0.5772156649 # Euler constant
 python_version = \
@@ -119,20 +154,6 @@ class Dipole():
 
 
 # ------------------------ global methods --------------------------
-def janskyPQ(Jy):
-  """
-  jansky unit (Jy) as a PhysicalQuantity() class instance
-
-  @param Jy : quantity expressed in Jy
-  @type  Jy : float
-
-  @return: PhysicalQuantity instance
-  """
-  return Physics.pq(Jy*1e-26,"W") \
-         /Physics.pq(1,'m')/Physics.pq(1,'m') \
-         /Physics.pq(1,'Hz')
-
-Jy = janskyPQ(1).getValue()
 
 def antenna_gain(aperture_efficiency,geometrical_area):
   """
