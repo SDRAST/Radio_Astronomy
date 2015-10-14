@@ -9,14 +9,16 @@ Baars, J.W.M., Mezger, P.G., Wendker, H.
 Zeitschrift fuer Astrophysik, 61, 134-143 (1965)
 """
 
-from math import pow, log10
+from math import exp, pow, log10
 import ephem
-from numpy import *
+import numpy as NP
 from scipy.optimize import leastsq
 
 from Radio_Astronomy import flux
-from Ephem import Planets
 
+# planets recognized by module ephem
+Planets = ['Jupiter', 'Mars', 'Mercury', 'Moon', 'Neptune', 'Pluto',
+           'Saturn', 'Sun', 'Uranus', 'Venus']
 diag = False
 
 params = {"Virgo": [6.541, -1.289],
@@ -93,10 +95,10 @@ def planet_brightness(planet, freq):
     # Baars et al., Z.f.Astroph. 61, 134 (1965) for 14.5 GHz
     # 
     # This fits the data down to 4 GHz but not below
-    freqs  = array([ 22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
-    Tb     = array([505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
+    freqs  = NP.array([ 22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
+    Tb     = NP.array([505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
     #sig_Tb= array([ 25.3,  17.0,  13.2,  13.6,  50.0,  13.1,  20.0,  25.0])
-    sig_Tb= array([ 25.3,  17.0,  13.2,  13.6,  100.0,  13.1, 100.0, 100.0])
+    sig_Tb= NP.array([ 25.3,  17.0,  13.2,  13.6,  100.0,  13.1, 100.0, 100.0])
     pinit = [750., -100., 0., 0.]
     out = leastsq(err_func, pinit,
                   args=(freqs,Tb,sig_Tb,log_cubic), full_output=1)
@@ -255,10 +257,32 @@ def get_calibrator_flux(source, freq, date):
         ref = None
   return flux, ref
 
+def galactic_BG(f):
+  """
+  Average galactic background temperature
+
+  Zarka et al JGR, 109, A09S15 (2004)
+
+  @param f : frequency in MHz
+  @type  f : float
+  """
+  def tau(f):
+    """
+    Optical depth of the Galaxy
+
+    @param f : frequency in MHz
+    @type  f : float
+    """
+    return 5.0*f**(-2.1)
+
+  Ig = 2.48e-20
+  Ieg = 1.06e-20
+  return Ig*f**(-0.52)*( (1-exp(-tau(f)))/tau(f) ) + Ieg*f**(-0.8)*exp(-tau(f))
+
 if __name__ == "__main__":
   from pylab import *
-  freqs  = array([ 22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
-  Tb     = array([505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
+  freqs  = NP.array([ 22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
+  Tb     = NP.array([505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
   semilogx(freqs,Tb,'.')
   x = linspace(1,100,100)
   y = planet_brightness("Venus", x)

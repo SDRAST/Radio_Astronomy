@@ -60,13 +60,16 @@ Left-overs::
 import Physics
 import math
 import numpy
+import sys
 from scipy.special import sici
 from Physics import c, wavenumber
 from Physics.Radiation.Continuum import BB_intensity
 
 euler = 0.5772156649 # Euler constant
+python_version = \
+  "python"+str(sys.version_info.major)+"."+str(sys.version_info.minor)
 
-cal_dir = "/usr/local/lib/python2.6/site-packages/Radio_Astronomy/"
+cal_dir = "/usr/local/lib/"+python_version+"/DSN-Sci-packages/Radio_Astronomy/"
 
 # -------------------------- classes -------------------------------
 
