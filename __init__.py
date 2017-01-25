@@ -60,7 +60,7 @@ Left-overs::
 import math
 try:
   import Physics
-  from Physics import c, wavenumber
+  from Physics import c, wavenumber # MKS
   from Physics.Radiation.Continuum import BB_intensity
   
   def janskyPQ(Jy):
@@ -644,3 +644,22 @@ def delta_f(delta_v,frequency):
   @return: frequency shift in Hz
   """
   return (delta_v/Physics.c)*frequency
+
+def standing_wave_spectrum(length, dielectric_constant):
+  """
+  Frequency interval between peaks in a spectral pattern from a standing wave
+  
+  Typical dielectric constants::
+    polystyrene  2.55
+    polyethylene 2.3
+    PE-6         1.56
+  
+  @param length : distance between reflecting surfaces in meters
+  @type  length : float
+  
+  @param dielectric_constant : one in free space; 2.55 for polystyrene
+  @type  dielectric_constant : float
+  
+  @return: float (Hz)
+  """
+  return c/(math.sqrt(dielectric_constant)*2*length)
