@@ -663,3 +663,4 @@ def standing_wave_spectrum(length, dielectric_constant):
   @return: float (Hz)
   """
   return c/(math.sqrt(dielectric_constant)*2*length)
+
