@@ -41,6 +41,7 @@ http://cdsweb.u-strasbg.fr/Dic/iau-spec.html
 """
 diag = False
 
+import logging
 import urllib
 import pickle
 import re
@@ -51,10 +52,12 @@ from scipy import polyfit, polyval
 
 from Radio_Astronomy import cal_dir
 
+module_logger = logging.getLogger(__name__)
+
 def make_3C_file(url='http://www.vla.nrao.edu/astro/calib/manual/csource.html'):
     """
     Makes VLA calibrators 3C pickle file.
-    
+
     The 3C names are the keys.  The data for each key is a list with formatted
     J2000 right ascension and declination, and the IAU name.
 
@@ -88,7 +91,7 @@ def make_3C_file(url='http://www.vla.nrao.edu/astro/calib/manual/csource.html'):
 def get_3C_coords(name):
     """
     Formatted J2000 right ascension and declination and IAU name
-    
+
     Returns the formatted J2000 right ascension and declination and IAU name
     given the 3C name.
     Example:
@@ -170,18 +173,18 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
                         formats.hms_delimited_angle_to_rads(data[3])*12/pi
       except Exception, details:
         # This should not happen; quit and diagnose manually
-        print "Could not parse RA:", data[3]
-        print 'in:',line
-        print details
+        module_logger.error("Could not parse RA:", data[3])
+        module_logger.error('in:',line)
+        module_logger.error(details)
         break
       try:
         this_source['dec'] = \
                         formats.dms_delimited_angle_to_rads(data[4])*180/pi
       except Exception, details:
         # This should not happen; quit and diagnose manually
-        print "Could not parse decl.:", data[4]
-        print "in:",line
-        print details
+        module_logger.error("Could not parse decl.:", data[4])
+        module_logger.error("in:",line)
+        module_logger.error(details)
         break
       # check for alternate names
       altname = line[63:].strip()
@@ -189,8 +192,7 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
         this_source['cat3c']=altname.strip()
       else:
         if not altname.isspace():
-          if diag:
-            print current_source,"has alternate name",altname,", length",len(altname)
+          module_logger.debug(current_source,"has alternate name",altname,", length",len(altname))
     elif re.search('B1950',line):
       # This is the B1950 name; don't bother to get the 1950 coordinates
       data = line.split()
@@ -214,24 +216,21 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
           flux = float(data[6])
           this_source[index] = flux
         except IndexError, details:
-          if diag:
-            print "Could not parse flux due to index error"
-            print details
+          module_logger.debug("Could not parse flux due to index error")
+          module_logger.debug(details)
         except ValueError, details:
-          if diag:
-            print "Warning: no flux in:\n",line,"\nfor",current_source
-            print details
+          # module_logger.error("Warning: no flux in:\n",line,"\nfor",current_source)
+          module_logger.debug("Warning: no flux in:\n{}\nfor {}".format(line, current_source))
+          module_logger.debug(details)
       except IndexError, details:
-        if diag:
-          print "Warning: no wavelength in: {",line,"} for",current_source
+        module_logger.debug("Warning: no wavelength in: {",line,"} for",current_source)
         break
       except ValueError, details:
-        if diag:
-          print "Could not parse wavelength data:",data[0][:-2]
-          print "in:",line
-          print details
+        module_logger.debug("Could not parse wavelength data:",data[0][:-2])
+        module_logger.debug("in:",line)
+        module_logger.debug(details)
         break
-  print len(cal_data),'sources processed'
+  module_logger.info('{} sources processed'.format(len(cal_data)))
   return cal_data
 
 def make_VLA_pickle_file(cals):
@@ -255,14 +254,14 @@ def get_cal_dict():
   try:
     dbfile = open(cal_dir+'VLA_cals','r')
   except IOError:
-    print "file VLA_cals could not be found or else not read"
+    module_logger.error("file VLA_cals could not be found or else not read")
     # get fresh data
     data = get_VLA_calibrators()
   else:
     data = pickle.load(dbfile)
     dbfile.close()
   return data
-  
+
 def get_cal_data(source):
   """
   Return calibrator data for a source.
@@ -288,7 +287,7 @@ def get_cal_data(source):
     try:
       source_data = data[name]
     except Exception, details:
-      print "Could not find data for J"+name
+      module_logger.debug("Could not find data for J"+name)
       source_data = None
   elif source[0].lower() == 'b':
     # This is an IAU B designator
@@ -296,7 +295,7 @@ def get_cal_data(source):
       namefile = open(cal_dir+'B_names','r')
       bnames = pickle.load(namefile)
     except IOError, details:
-      print "File B_names not found."
+      module_logger.debug("File B_names not found.")
       bnames,cat_3C = VLA_name_xref(data)
     name = source[1:]
     source_data = data[bnames[name]]
@@ -306,7 +305,7 @@ def get_cal_data(source):
       namefile = open(cal_dir+'3C_names','r')
       bnames = pickle.load(namefile)
     except IOError, details:
-      print "File 3C_names not found."
+      module_logger.debug("File 3C_names not found.")
       bnames,cat_3C = VLA_name_xref(data)
     source_data = data[cat_3C[source]]
   else:
@@ -319,7 +318,7 @@ def get_cal_data(source):
       source_data = data[bnames[source]]
       source_data['jname'] = source
     else:
-      print "No match for",source
+      module_logger.error("No match for",source)
       source_data = None
   return source_data
 
@@ -332,7 +331,7 @@ def VLA_name_xref(cal_data):
 
   @param cal_data : VLA calibrator data dictionary
   @type  cal_data : dictionary of dictionaries
-  
+
   @return: tuple of dictionaries
   """
   Bname_dict = {}
@@ -389,30 +388,25 @@ def match_IAU_name(name,name_list):
   name 1012+531. If the name is 1012+5307, it is one character over.
   """
   missing = 8-len(name)
-  if diag:
-    print "match_IAU_name: missing =",missing
+  module_logger.debug("match_IAU_name: missing =",missing)
   if missing == 0:
     # Just see if the name is in the list
     try:
       index = name_list.index(name)
     except ValueError, details:
-      if diag:
-        print "match_IAU_name: could not find",name,"in name list"
+      module_logger.error("match_IAU_name: could not find",name,"in name list")
       return None
     else:
       return name_list[index]
   # The name is too long or too short
   factor = pow(10.,missing)
-  if diag:
-    print "match_IAU_name: multiplier =",factor
+  module_logger.debug("match_IAU_name: multiplier =",factor)
   name_ra,name_dec = IAU_name_parts(name)
-  if diag:
-    print "match_IAU_name: name ra,dec parts>",name_ra,name_dec
+  module_logger.debug("match_IAU_name: name ra,dec parts>",name_ra,name_dec)
   for candidate in name_list:
     key_ra,key_dec = IAU_name_parts(candidate)
     if key_ra == name_ra:
-      if diag:
-        print "match_IAU_name: matched ra part to>",candidate
+      module_logger.debug("match_IAU_name: matched ra part to>",candidate)
       if missing > 0:
         # name too small; round the key and see if it is close enough
         if abs(  int(name_dec)
