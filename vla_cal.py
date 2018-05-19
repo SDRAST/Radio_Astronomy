@@ -40,16 +40,17 @@ http://cdsweb.u-strasbg.fr/Dic/iau-spec.html
 
 """
 diag = False
-
+import os
 import logging
 import urllib
 import pickle
 import re
-from math import pi
-from Astronomy import formats
 import struct
+from math import pi
+
 from scipy import polyfit, polyval
 
+from Astronomy import formats
 from Radio_Astronomy import cal_dir
 
 module_logger = logging.getLogger(__name__)
@@ -252,7 +253,8 @@ def get_cal_dict():
   Returns the VLA calibrator dictionary
   """
   try:
-    dbfile = open(cal_dir+'VLA_cals','r')
+    dbfile_path = os.path.join(cal_dir, "VLA_cals")
+    dbfile = open(dbfile_path,'r')
   except IOError:
     module_logger.error("file VLA_cals could not be found or else not read")
     # get fresh data
