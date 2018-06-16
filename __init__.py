@@ -57,12 +57,13 @@ Left-overs::
    freq_to_chan(frequency,bandwidth,n_chans)
 
 """
+import os
 import math
 try:
   import Physics
-  from Physics import c, wavenumber
+  from Physics import c, wavenumber # MKS
   from Physics.Radiation.Continuum import BB_intensity
-  
+
   def janskyPQ(Jy):
     """
     jansky unit (Jy) as a PhysicalQuantity() class instance
@@ -100,11 +101,13 @@ import numpy
 import sys
 from scipy.special import sici
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 euler = 0.5772156649 # Euler constant
 python_version = \
   "python"+str(sys.version_info.major)+"."+str(sys.version_info.minor)
-
-cal_dir = "/usr/local/lib/"+python_version+"/DSN-Sci-packages/Radio_Astronomy/"
+cal_dir = current_dir
+# cal_dir = "/usr/local/lib/"+python_version+"/DSN-Sci-packages/Radio_Astronomy/"
 
 # -------------------------- classes -------------------------------
 
@@ -118,7 +121,7 @@ class Dipole():
 
     @param length : dipole length (m)
     @type  length : (numpy array of) float
-    
+
     @param radius : radius of dipole element (m)
     @type  radius : (numpy array of) float
     """
@@ -128,13 +131,13 @@ class Dipole():
   def impedance(self, wvln, Z):
     """
     Impedance of a dipole antenna
-    
+
     Reference::
       https://en.wikipedia.org/wiki/Dipole_antenna#General_impedance_formulas
-    
+
     @param wvln : wavelength (m)
     @type  wvln : (numpy array of) float
-    
+
     @param Z : impedance of the medium, 376.73 ohm for free space
     """
     k = 2*math.pi*wavenumber(wvln)
@@ -200,13 +203,13 @@ def antenna_solid_angle(aperture_efficiency,geometrical_area,wavelength):
 def antenna_temp(antenna_gain,flux_density):
   """
   Antenna temperature of a source from flux and antenna gain.
-  
+
   Given the gain of the antenna (K/J), and the flux density of a
   source in Jy, this returns the antenna temperature of the source.
 
   @param antenna_gain : antenna gain in K/Jy
   @type  antenna_gain : float
-  
+
   @param flux_density : flux density in Jy
   @type  flux_density : float
 
@@ -286,7 +289,7 @@ def dBm(power):
     return 10*numpy.log10(power*1000.)
   else:
     return 10*numpy.log10(numpy.array(power)*1000.)
-    
+
 def dbm_to_dbuv(dbm):
   """
   Convert dB(milliwatts) to dB(microvolts)
@@ -334,7 +337,7 @@ def dBm_to_watts(dbm):
 def dbuv_to_dbm(dbuv):
   """
   Convert dBuv to dBm.
-  
+
   This is the same as dbm - 106.98 except pedagogically clearer
 
   @param dbuv : dB(uV) as float
@@ -346,7 +349,7 @@ def dbuv_to_dbm(dbuv):
 def dbuv_to_dmw_per_sq_m(dbuv):
   """
   Convert dB(uV) to dB(mW/m^2)
-  
+
   from http://www.ahsystems.com/notes/RFconversions.php:
   dBmW/m2 = dBmV/m - 115.8
 
@@ -382,7 +385,7 @@ def dbuv_to_v(dbuv):
 def dmw_per_sq_m_to_dbuv(dbmw):
   """
   Convert dB(mW/m^2) to dB(uV)
-  
+
   from http://www.ahsystems.com/notes/RFconversions.php:
   dBmW/m2 = dBmV/m - 115.8
 
@@ -423,7 +426,7 @@ def forward_gain(aperture_efficiency, geometrical_area, wavelength):
   See 'directivity' for parameters.
   """
   return dB(directivity(aperture_efficiency, geometrical_area, wavelength))
-  
+
 def flux(Tb,freq,angular_diameter):
   """
   Flux received from a source
@@ -449,10 +452,10 @@ def freq_to_chan(frequency,bandwidth,n_chans):
 
     @param frequency : same units as bandwidth
     @type  frequency : float
-    
+
     @param bandwidth : same units as frequency
     @type  bandwidth : float
-    
+
     @param n_chans : number of channels in the band
     @type  n_chans : int
     """
@@ -507,7 +510,7 @@ def noise_power(Tsys,bandwidth):
 
   @param Tsys : system temperature in K
   @type  Tsys : float
-  
+
   @param bandwidth : bandwidth in Hz
   @type  bandwidth : float
 
@@ -538,7 +541,7 @@ def rms_noise(Tsys,bandwidth,integration_time):
 def ruze_loss_factor(surface_rms,wavelength):
   """
   Loss due to reflecting surface irregulaties in a paraboloid
-  
+
   Given a surface r.m.s. deviation from perfect, this returns the
   efficiency of a reflector relative to one with a perfect surface at
   the specified wavelength.  surface_rms and wavelength must be in the
@@ -630,10 +633,10 @@ def delta_f(delta_v,frequency):
 
   For example, 1 km/s = 74 kHz at 22 GHz water line and 6 kHz at the OH line::
    In [1]: from Radio_Astronomy import *
-   
+
    In [2]: delta_f(1e3,22.235e9)/1e3
    Out[2]: 74.167976567309097
-   
+
    In [3]: delta_f(1e3,1776e6)/1e3
    Out[3]: 5.9240983307191799
 
@@ -645,3 +648,21 @@ def delta_f(delta_v,frequency):
   """
   return (delta_v/Physics.c)*frequency
 
+def standing_wave_spectrum(length, dielectric_constant):
+  """
+  Frequency interval between peaks in a spectral pattern from a standing wave
+
+  Typical dielectric constants::
+    polystyrene  2.55
+    polyethylene 2.3
+    PE-6         1.56
+
+  @param length : distance between reflecting surfaces in meters
+  @type  length : float
+
+  @param dielectric_constant : one in free space; 2.55 for polystyrene
+  @type  dielectric_constant : float
+
+  @return: float (Hz)
+  """
+  return c/(math.sqrt(dielectric_constant)*2*length)

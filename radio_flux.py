@@ -62,7 +62,7 @@ def log_cubic(x,p):
   """
   2-order polynomial in log(x)
   """
-  logx = log10(x)
+  logx = NP.log10(x)
   return p[0] + p[1]*logx + p[2]*logx**2 + p[3]*logx**3
 
 def err_func(p,x,y,yerr,function):
@@ -101,7 +101,7 @@ def planet_brightness(planet, freq):
     sig_Tb= NP.array([ 25.3,  17.0,  13.2,  13.6,  100.0,  13.1, 100.0, 100.0])
     pinit = [750., -100., 0., 0.]
     out = leastsq(err_func, pinit,
-                  args=(freqs,Tb,sig_Tb,log_cubic), full_output=1)
+                  args=(freqs,  Tb, sig_Tb, log_cubic), full_output=1)
     Tb_fit = log_cubic(freq,out[0])
     mask = freq <= 4.0
     if type(mask) == bool:
