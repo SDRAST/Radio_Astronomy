@@ -14,6 +14,7 @@ import ephem
 import numpy as NP
 from scipy.optimize import leastsq
 
+from Astronomy import Ephem
 from Radio_Astronomy import flux
 
 # planets recognized by module ephem
@@ -95,10 +96,9 @@ def planet_brightness(planet, freq):
     # Baars et al., Z.f.Astroph. 61, 134 (1965) for 14.5 GHz
     # 
     # This fits the data down to 4 GHz but not below
-    freqs  = NP.array([ 22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
-    Tb     = NP.array([505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
-    #sig_Tb= array([ 25.3,  17.0,  13.2,  13.6,  50.0,  13.1,  20.0,  25.0])
-    sig_Tb= NP.array([ 25.3,  17.0,  13.2,  13.6,  100.0,  13.1, 100.0, 100.0])
+    freqs  = NP.array([  22.46, 14.94,  8.44,  4.86, 14.5,  86.1,  37.5, 138.9])
+    Tb     = NP.array([ 505.2, 565.9, 657.5, 679.9, 480.0, 357.5, 495.,  290. ])
+    sig_Tb = NP.array([  25.3,  17.0,  13.2,  13.6, 100.0,  13.1, 100.0, 100.0])
     pinit = [750., -100., 0., 0.]
     out = leastsq(err_func, pinit,
                   args=(freqs,  Tb, sig_Tb, log_cubic), full_output=1)
@@ -142,7 +142,7 @@ def get_planet_flux(planet,freq,date):
   Sources
   =======
   The Flux Density of the Strongest Thermal Radio Sources at 14.5 GHz
-  by J.W.M. Baars, P.G. Mezger and H. Wendker
+  by J.W.M. Baars, P.G. Mezger and H. Wendker (1965)
 
   @param planet : planet name
   @type  planet : str

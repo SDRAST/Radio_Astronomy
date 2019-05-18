@@ -98,7 +98,6 @@ except ImportError:
 
 import numpy
 import sys
-from scipy.special import sici
 
 euler = 0.5772156649 # Euler constant
 python_version = \
@@ -139,9 +138,16 @@ class Dipole():
     """
     k = 2*math.pi*wavenumber(wvln)
     x = k*self.length
-    Si,Ci = sici(x)
-    SiTwo,CiTwo = sici(2*x)
-    Sia, Cia = sici(2*k*self.radius*self.radius/self.length)
+    try:
+      from scipy.special import sici
+      Si,Ci = sici(x)
+      SiTwo,CiTwo = sici(2*x)
+      Sia, Cia = sici(2*k*self.radius*self.radius/self.length)
+    except ImportError:
+      Si,Ci = sin(x), cos(x)
+      SiTwo,CiTwo = sin(2*x), cos(2*x)
+      a = 2*k*self.radius*self.radius/self.length
+      Sia, Cia = sin(a), cos(a)
     multiplier = Z/(2*math.pi*numpy.sin(x/2.)**2)
 
     R = multiplier * (euler + numpy.log(x) - Ci
