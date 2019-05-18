@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 """
+import os
 import pickle
 import urllib
+
 from matplotlib.dates import datestr2num
 from numpy import array
 from scipy import polyfit, polyval
@@ -12,7 +14,9 @@ from Data_Reduction import nearest_index
 
 diag = True
 
-pickle_file = open(cal_dir+"michigan_tables.pkl","r")
+pickle_file_path = os.path.join(cal_dir, "michigan_tables.pkl")
+pickle_file = open(pickle_file_path,"r")
+# pickle_file = open(cal_dir+"michigan_tables.pkl","r")
 table_links = pickle.load(pickle_file)
 pickle_file.close()
 
@@ -120,4 +124,3 @@ if __name__ == "__main__":
   plot(x,y,'-')
   grid()
   show()
-  
