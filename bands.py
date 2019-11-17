@@ -1,9 +1,17 @@
 """
 conversion from waveguide band to frequency and vice-versa
+
+Examples::
+
+ In [1]: from Radio_Astronomy.bands import *
+ In [2]: frequency_to_band(3)
+ Out[2]: 'S'
+ In [3]: band_to_frequency('K')
+ Out[3]: 22
 """
 def frequency_to_band(freq):
   """
-  frequency in GHz
+  band code from frequency in GHz
   """
   if                  freq  <  1:   return None
   elif freq >= 1   and freq <  2:   return "L"
@@ -20,7 +28,7 @@ def frequency_to_band(freq):
 
 def band_to_frequency(band):
   """
-  frequency in GHz
+  nominal band center frequency in GHz from band code
   """
   if   band == "L":  return 1.7
   elif band == "S":  return 2.3

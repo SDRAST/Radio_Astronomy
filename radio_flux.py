@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Data for 86.1 GHz from
-Ulich, B. L.; Davis, J. H.; Rhodes, P. J.; Hollis, J. M.
-IEEE Trans. Ant. and Prop., AP-28, 367-377 (1980).
+Functions to compute fluxes of standard radio sources, the Sun, Venus,
+Jupiter and Saturn. The brightness of the Galactic background emission
+is also provided.
 
-Data for 14.5 GHz from
-Baars, J.W.M., Mezger, P.G., Wendker, H.
-Zeitschrift fuer Astrophysik, 61, 134-143 (1965)
+The origin of the data is given in the documentation for ``radio_flux``,
+``planet\_brightness``,  ``get\_planet\_flux``, and
+``galactic_BG``.
 """
 
 from math import exp, pow, log10
@@ -30,8 +30,8 @@ def radio_flux(source,freq):
   """
   Flux density in Jy of standard calibrators.
 
-  From Radio Star Flux Density Expressions for Accurate Antenna Gain
-  Measurements by E.P. Ekelman, COMSAT Laboratories,
+  From "Radio Star Flux Density Expressions for Accurate Antenna Gain
+  Measurements" by E.P. Ekelman, COMSAT Laboratories,
   0-7803-5639-W99/  IEEE 1999.
 
   @param source : name of the source ('Virgo', 'Omega', or 'Orion')
@@ -79,7 +79,7 @@ def err_func(p,x,y,yerr,function):
   
 def planet_brightness(planet, freq):
   """
-  Brightness temperature of a planet
+  Brightness temperature of a planet.
 
   @param planet : name of the planet (or 'Sun')
   @type  planet : str
@@ -88,6 +88,17 @@ def planet_brightness(planet, freq):
   @type  freq : float or array of float
 
   @return: float or array of float
+  
+  The data are from
+  
+  Butler et al, Icarus, 154, 226B (2001) for 4.86-22.46 GHz
+  
+  Ulich et al., IEEE Proc. Ant. Prop., AP-28, 367-377 (1980) for 86.1 GHz
+  
+  Yefanov et al. Radiofizika, 13, 219 (1970) for 37.5 and 138.9
+  
+  Baars et al., Z.f.Astroph. 61, 134 (1965) for 14.5 GHz
+  
   """
   if planet == 'Venus':
     # Butler et al, Icarus, 154, 226B (2001) for 4.86-22.46 GHz

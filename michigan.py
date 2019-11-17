@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 """
+Provides source fluxes from the University of `Michigan Radio Observatory 
+database <https://dept.astro.lsa.umich.edu/datasets/umrao.php>`_.
+
+The MRO radio source catalog was developed from years of monitoring a select
+set of radio sources.  The catalog work was discontinued.
+
+The description and plots included in the UMRAO web site were last updated on 
+August 23, 2012. For questions or for additional data, contact 
+`Margo Aller <mfa@umich.edu>`_.
 """
 import os
 import pickle

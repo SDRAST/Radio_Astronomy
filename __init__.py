@@ -8,6 +8,7 @@ Function Groups
 Antenna
 -------
 Functions for antenna properties::
+
    antenna_gain(aperture_efficiency,geometrical_area)
    antenna_solid_angle(aperture_efficiency,geometrical_area,wavelength)
    antenna_temperature(flux,effective_area)
@@ -20,6 +21,7 @@ Functions for antenna properties::
 Noise
 -----
 Functions related noise temperature::
+
    antenna_temp(antenna_gain,flux_density)
    noise_figure(Tsys)
    noise_power(Tsys,bandwidth)
@@ -29,12 +31,14 @@ Functions related noise temperature::
 Radio Sources
 -------------
 Relating flux, antenna temperature, etc.::
+
    flux(Tb,freq,angular_diameter)
    janskyPQ(Jy)
 
 Conversions
 -----------
 Converting between units, log to linear, etc.::
+
    dB(gain)
    dBm(power)
    dbm_to_dbuv(dbm)
@@ -54,6 +58,7 @@ Converting between units, log to linear, etc.::
 Miscellaneous
 -------------
 Left-overs::
+
    freq_to_chan(frequency,bandwidth,n_chans)
 
 """

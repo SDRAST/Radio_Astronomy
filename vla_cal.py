@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-module vla_cal
-
 Module vla_cal creates or updates files of VLA calibrators and retrieves
 data for a specified calibrator.
 
 Administration
-==============
+--------------
+
 It is expected that the pickle files VLA_cals, B_names and 3C_names exist.
 If they do not, the following must be done in the module directory
-/usr/local/lib/python2.6/site-packages/Radio_Astronomy/:
+``/usr/local/lib/python2.6/site-packages/Radio_Astronomy/``.
+
 >>> from Radio_Astronomy.vla_cal import *
 >>> cal_data = get_VLA_calibrators()
 >>> make_VLA_pickle_file(cal_data)
@@ -18,25 +18,28 @@ If they do not, the following must be done in the module directory
 >>> make_3C_pickle_file(cat_3C_dict)
 
 3C_VLA_cals is a convenience.pickle file that provides coordinate data
-keyed to 3C names.  It is created as follows:
+keyed to 3C names.  It is created as follows
+
 >>> make_3C_file()
 
 User Instructions
-=================
-If you only needs coordinates for a 3C source then this will suffice:
+-----------------
+If you only needs coordinates for a 3C source then this will suffice
+
 >>> ra,dec,jname = get_3C_coords(name)
 
-If you need all the data for a source then do this:
+If you need all the data for a source then do this
+
 >>> data_dict = get_cal_data(source)
 
 Notes
-=====
+-----
 One source of annoyance is that astronomers do not all or always use the same
 designations as NRAO, that is, more or less characters, like b1937+21,
 j0218+4232 and so on.
 
 IAU source designation recommendations can be found at
-http://cdsweb.u-strasbg.fr/Dic/iau-spec.html
+<http://cdsweb.u-strasbg.fr/Dic/iau-spec.html>
 
 """
 diag = False
@@ -95,7 +98,8 @@ def get_3C_coords(name):
 
     Returns the formatted J2000 right ascension and declination and IAU name
     given the 3C name.
-    Example:
+    Example
+    
     >>> ra,dec,iau = get_3C_coords('3C286')
     >>> print ra,dec,iau
     13h31m08.287984s 30d30'32.958850" 1331+305
@@ -114,6 +118,7 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
   Create a dictionary keyed on J-names of calibrators in the VLA data base.
 
   Entries in the VLA database are separated by spaces. This is a typical entry::
+  
    0001+192   J2000  A 00h01m08.621563s  19d14'33.801860"  Aug01  JVAS
    2358+189   B1950  A 23h58m34.865400s  18d57'51.753000"
    -----------------------------------------------------
@@ -273,7 +278,7 @@ def get_cal_data(source):
   For now, it doesn't handle other names, like "Virgo A"
 
   Note
-  ====
+  ----
   This will use the pickle file if there is one.  Otherwise it will get
   the data from NRAO.
 
