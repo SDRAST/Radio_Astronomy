@@ -18,6 +18,10 @@ conversions used in electrical engineering, etc.
 .. automodapi:: Radio_Astronomy.radio_flux
 .. automodapi:: Radio_Astronomy.vla_cal
 
+The code can be cloned from `this site <https://github.jpl.nasa.gov/RadioAstronomy/Radio_Astronomy>`_
+
+The `documentation <>`_https://github.jpl.nasa.gov/pages/RadioAstronomy/Radio_Astronomy/`_
+was generated with Sphinx. 
 
 .. toctree::
    :maxdepth: 2
