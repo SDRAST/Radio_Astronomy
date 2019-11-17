@@ -184,6 +184,8 @@ def antenna_gain(aperture_efficiency,geometrical_area):
 def antenna_solid_angle(aperture_efficiency,geometrical_area,wavelength):
   """
   Antenna solid angle of an antenna, assuming radiation efficiency = 1
+  
+  Krauss, Radio Astronomy, sec. 6-2, cals this the beam solid angle.
 
   Given the aperture efficiency (dimensionless) and the geometrical
   area and wavelength in the same units (say, meters), this returns the
@@ -240,6 +242,8 @@ def antenna_temperature(flux,effective_area):
 def beam_efficiency(antenna_solid_angle, beam_solid_angle):
   """
   Fraction of flux in the main beam that registers at the receiver.
+  
+  Kraus, Radio Astronomy, eq. 6-23.
 
   This is generally larger than the aperture efficiency by a factor
   of 1.2 - 1.4.
@@ -248,12 +252,19 @@ def beam_efficiency(antenna_solid_angle, beam_solid_angle):
 
 def beam_solid_angle(*args):
   """
-  Solid angle of the main beam out to the first null.
+  Solid angle of the main beam.
+  
+  Solid angle of the main beam out to the first null, based on the HPBW in
+  two orthogonal directions.
+  
+  Kraus, Radio Astronomy, sec. 6-2, cals this the main beam solid angle.
 
-  This is an approximation assuming a Gaussian beamshape.
+  This is an approximation assuming a Gaussian beamshape (Krauss, Radio
+  Astronomy, problem 6-2.
 
   This is also an alias for antenna_solid_angle for backwards compatibility.
-  The number of arguments determines which it is.
+  The number of arguments determines which it is. In this case the arguments
+  are aperture_efficiency, geometrical_area, and wavelength.
   """
   if len(args) == 2:
     HPBWx, HPBWy = args
