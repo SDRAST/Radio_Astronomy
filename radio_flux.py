@@ -150,8 +150,8 @@ def get_planet_flux(planet,freq,date):
   """
   Flux of planet calibrators
 
-  Sources
-  =======
+  References
+  ==========
   The Flux Density of the Strongest Thermal Radio Sources at 14.5 GHz
   by J.W.M. Baars, P.G. Mezger and H. Wendker (1965)
 
@@ -209,7 +209,7 @@ def get_planet_flux(planet,freq,date):
     pl.compute(date)
   diameter = 2*pl.radius           # angle in radians
   if diag:
-    print "Tb =",Tb, ", radius =", radius
+    print("Tb =",Tb, ", radius =", radius)
   # This converts brightness temperature and size to flux.
   return flux(Tb, freq, diameter)
 
@@ -238,7 +238,7 @@ def get_calibrator_flux(source, freq, date):
   @return: flyx in Jy (float) and origin of flux data (str)
   """
   if diag:
-    print "Processing",source,"for",freq,"GHz at",date.ctime()
+    print("Processing",source,"for",freq,"GHz at",date.ctime())
   try:
     # planet?
     Planets.index(source)
@@ -249,21 +249,21 @@ def get_calibrator_flux(source, freq, date):
     if source[1] == 'C' or source[0] == 'J' or source[0] == 'B':
       calibrator = Ephem.Quasar(source)
       if diag:
-        print source,"=",calibrator.Jname,"=",calibrator.Bname
+        print(source,"=",calibrator.Jname,"=",calibrator.Bname)
       flux = calibrator.get_flux(freq,date)
       if diag:
-        print ref,"flux is",flux
+        print(ref,"flux is",flux)
     else:
       try:
         # Maybe its a J name without the J
         calibrator = Ephem.Quasar(source)
         flux = calibrator.get_flux(freq,date)
         if diag:
-          print ref,"flux is",flux
+          print(ref,"flux is",flux)
       except:
         # Need to handle more cases
         if diag:
-          print "Could not handle",source
+          print("Could not handle",source)
         flux = None
         ref = None
   return flux, ref

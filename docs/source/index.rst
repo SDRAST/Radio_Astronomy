@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Radio\_Astronomy
-================
+
+Single Dish Radio Astronomy Software Tools
+==========================================
+
+For an overview of SDRAST and the current status please visit https://sdrast.github.io/.
 
 The module has functions that are specific to radio astronomy, as opposed to
 astronomy in general.  They include antenna properties (beam size, efficiency,
@@ -18,9 +21,9 @@ conversions used in electrical engineering, etc.
 .. automodapi:: Radio_Astronomy.radio_flux
 .. automodapi:: Radio_Astronomy.vla_cal
 
-The code can be cloned from `this site <https://github.jpl.nasa.gov/RadioAstronomy/Radio_Astronomy>`_
+The code can be cloned from `this site <https://github.com/SDRAST/Radio_Astronomy>`_
 
-The `documentation <>`_https://github.jpl.nasa.gov/pages/RadioAstronomy/Radio_Astronomy/`_
+The `documentation <>`_https://sdrast.github.io/Radio_Astronomy/`_
 was generated with Sphinx. 
 
 .. toctree::

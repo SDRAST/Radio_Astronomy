@@ -45,7 +45,7 @@ IAU source designation recommendations can be found at
 diag = False
 import os
 import logging
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import pickle
 import re
 import struct
@@ -71,7 +71,7 @@ def make_3C_file(url='http://www.vla.nrao.edu/astro/calib/manual/csource.html'):
     @return: True
     """
     vla_cal = \
-            urllib.urlopen(url)
+            urllib.request.urlopen(url)
     file_open = True
     cal_data = {}
     while file_open:
@@ -135,7 +135,7 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
   @return: dictionary of dictionaries
   """
 
-  f = urllib.urlopen(url)
+  f = urllib.request.urlopen(url)
   # Skip over title, internal links, and column headings
   for i in range(11):
     line = f.readline()
@@ -177,7 +177,7 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
       try:
         this_source['ra'] = \
                         formats.hms_delimited_angle_to_rads(data[3])*12/pi
-      except Exception, details:
+      except Exception as details:
         # This should not happen; quit and diagnose manually
         module_logger.error("Could not parse RA:", data[3])
         module_logger.error('in:',line)
@@ -186,7 +186,7 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
       try:
         this_source['dec'] = \
                         formats.dms_delimited_angle_to_rads(data[4])*180/pi
-      except Exception, details:
+      except Exception as details:
         # This should not happen; quit and diagnose manually
         module_logger.error("Could not parse decl.:", data[4])
         module_logger.error("in:",line)
@@ -221,17 +221,17 @@ def get_VLA_calibrators(url='http://www.vla.nrao.edu/astro/calib/manual/csource.
         try:
           flux = float(data[6])
           this_source[index] = flux
-        except IndexError, details:
+        except IndexError as details:
           module_logger.debug("Could not parse flux due to index error")
           module_logger.debug(details)
-        except ValueError, details:
+        except ValueError as details:
           # module_logger.error("Warning: no flux in:\n",line,"\nfor",current_source)
           module_logger.debug("Warning: no flux in:\n{}\nfor {}".format(line, current_source))
           module_logger.debug(details)
-      except IndexError, details:
+      except IndexError as details:
         module_logger.debug("Warning: no wavelength in: {",line,"} for",current_source)
         break
-      except ValueError, details:
+      except ValueError as details:
         module_logger.debug("Could not parse wavelength data:",data[0][:-2])
         module_logger.debug("in:",line)
         module_logger.debug(details)
@@ -259,7 +259,7 @@ def get_cal_dict():
   """
   try:
     dbfile_path = os.path.join(cal_dir, "VLA_cals")
-    dbfile = open(dbfile_path,'r')
+    dbfile = open(dbfile_path,'rb')
   except IOError:
     module_logger.error("file VLA_cals could not be found or else not read")
     # get fresh data
@@ -293,7 +293,7 @@ def get_cal_data(source):
     name = source[1:]
     try:
       source_data = data[name]
-    except Exception, details:
+    except Exception as details:
       module_logger.debug("Could not find data for J"+name)
       source_data = None
   elif source[0].lower() == 'b':
@@ -301,7 +301,7 @@ def get_cal_data(source):
     try:
       namefile = open(cal_dir+'B_names','r')
       bnames = pickle.load(namefile)
-    except IOError, details:
+    except IOError as details:
       module_logger.debug("File B_names not found.")
       bnames,cat_3C = VLA_name_xref(data)
     name = source[1:]
@@ -311,16 +311,16 @@ def get_cal_data(source):
     try:
       namefile = open(cal_dir+'3C_names','r')
       bnames = pickle.load(namefile)
-    except IOError, details:
+    except IOError as details:
       module_logger.debug("File 3C_names not found.")
       bnames,cat_3C = VLA_name_xref(data)
     source_data = data[cat_3C[source]]
   else:
     # ambiguous
-    if data.has_key(source):
+    if source in data:
       # Matches a J designator
       source_data = data[source]
-    elif bnames.has_key(source):
+    elif source in bnames:
       # Try the B names
       source_data = data[bnames[source]]
       source_data['jname'] = source
@@ -343,12 +343,12 @@ def VLA_name_xref(cal_data):
   """
   Bname_dict = {}
   cat_3C_dict = {}
-  keys = cal_data.keys()
+  keys = list(cal_data.keys())
   keys.sort
   for key in keys:
-    if cal_data[key].has_key('bname'):
+    if 'bname' in cal_data[key]:
       Bname_dict[cal_data[key]['bname']] = key
-    if cal_data[key].has_key('cat3c'):
+    if 'cat3c' in cal_data[key]:
       cat_3C_dict[cal_data[key]['cat3c']] = key
   return Bname_dict,cat_3C_dict
 
@@ -400,7 +400,7 @@ def match_IAU_name(name,name_list):
     # Just see if the name is in the list
     try:
       index = name_list.index(name)
-    except ValueError, details:
+    except ValueError as details:
       module_logger.error("match_IAU_name: could not find",name,"in name list")
       return None
     else:
@@ -455,7 +455,7 @@ def fix_IAU_name(name):
     # The dec_part could be rounded or truncated
     if IAU_type == "j":
       # Get data keyed to IAU J names
-      J_names = get_cal_dict().keys()
+      J_names = list(get_cal_dict().keys())
       return match_IAU_name(name,J_names),"j"
     elif IAU_type == "b":
       # Get data keyed to IAU B names
@@ -463,7 +463,7 @@ def fix_IAU_name(name):
       return match_IAU_name(name,B_names),"b"
     else:
       # IAU type unknown, try both
-      J_names = get_cal_dict().keys()
+      J_names = list(get_cal_dict().keys())
       result = match_IAU_name(name,J_names)
       if result:
         return result,"j"
@@ -484,7 +484,7 @@ def Jnames_to_B(Bnames_dict):
   @return: Bnames keyed to Jnames
   """
   Jnames_dict = {}
-  for k, v in Bnames_dict.iteritems():
+  for k, v in Bnames_dict.items():
     Jnames_dict[v] = k
   return Jnames_dict
 
@@ -497,13 +497,13 @@ def get_flux_data(src_data):
   @return: (list of freqs, list of fluxes)
   """
   S = {}
-  for key in src_data.keys():
+  for key in list(src_data.keys()):
     if key[0:2] == "mm":
       if src_data[key] != None and src_data[key] != 0.0:
         mm = int(key[2:])
         f = 300./mm
         S[f] = src_data[key]
-  f = S.keys()
+  f = list(S.keys())
   f.sort()
   fluxes = []
   for k in f:

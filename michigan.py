@@ -12,24 +12,24 @@ August 23, 2012. For questions or for additional data, contact
 """
 import os
 import pickle
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from matplotlib.dates import datestr2num
 from numpy import array
 from scipy import polyfit, polyval
 
 from Radio_Astronomy import cal_dir
-from Data_Reduction import nearest_index
+from support import nearest_index
 
 diag = True
 
 pickle_file_path = os.path.join(cal_dir, "michigan_tables.pkl")
-pickle_file = open(pickle_file_path,"r")
+pickle_file = open(pickle_file_path,"rb")
 # pickle_file = open(cal_dir+"michigan_tables.pkl","r")
 table_links = pickle.load(pickle_file)
 pickle_file.close()
 
-Bnames = table_links.keys()
+Bnames = list(table_links.keys())
 Bnames.sort()
 
 def get_flux_data(url):
@@ -39,7 +39,7 @@ def get_flux_data(url):
   The URL is obtained from a local dictionary indexed with the
   source B names.
   """
-  table = urllib.urlopen(url)
+  table = urllib.request.urlopen(url)
   table_data = table.read()
   table.close()
 
@@ -53,14 +53,14 @@ def get_flux_data(url):
       parts = line.split()
       if len(parts) < 6:
         # No flux data
-        print parts
+        print(parts)
         break
       mjd = float(parts[0])
       date = datestr2num(parts[1])+float(parts[3])/24.
       freq = parts[2]
       flux = float(parts[4])
       sig_flux = float(parts[5])
-      if times.has_key(freq) == False:
+      if (freq in times) == False:
         times[freq] = []
         fluxes[freq] = []
         sigflux[freq] = []
@@ -76,7 +76,7 @@ def polate_flux(Jname,datenum,freq):
   times, fluxes, sigflux = get_flux_data(table_links[Jname][1])
   # (inter/extra)polate time first
   guess = {}
-  for key in times.keys():
+  for key in list(times.keys()):
     # interpolate or extrapolate?
     datenums = array(times[key])
     if datenum > datenums[-1]:
@@ -107,7 +107,7 @@ def polate_flux(Jname,datenum,freq):
   # Now we (inter/extra)polate frequency
   freqs = []
   fluxdata = []
-  for key in times.keys():
+  for key in list(times.keys()):
     freqs.append(float(key))
     fluxdata.append(guess[key])
   (ar,br) = polyfit(freqs,fluxdata,1)
@@ -119,7 +119,7 @@ if __name__ == "__main__":
   from Radio_Astronomy.vla_cal import get_cal_data, get_cal_dict, \
                                       Jnames_to_B, VLA_name_xref
   cal_data = get_cal_dict()
-  vla_sources = cal_data.keys()
+  vla_sources = list(cal_data.keys())
   Bnames_dict,cat_3C_dict = VLA_name_xref(cal_data)
   Jnames_dict = Jnames_to_B(Bnames_dict)
   freqs = [4.8, 8.0, 14.5]
