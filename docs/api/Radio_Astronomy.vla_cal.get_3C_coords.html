@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>get_3C_coords &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_VLA_calibrators" href="Radio_Astronomy.vla_cal.get_VLA_calibrators.html" />
+    <link rel="prev" title="fix_IAU_name" href="Radio_Astronomy.vla_cal.fix_IAU_name.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_VLA_calibrators.html" title="get_VLA_calibrators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.fix_IAU_name.html" title="fix_IAU_name"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.vla_cal.fix_IAU_name.html"
+                        title="previous chapter">fix_IAU_name</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.vla_cal.get_VLA_calibrators.html"
+                        title="next chapter">get_VLA_calibrators</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Radio_Astronomy.vla_cal.get_3C_coords.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="get-3c-coords">
+<h1>get_3C_coords<a class="headerlink" href="#get-3c-coords" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Radio_Astronomy.vla_cal.get_3C_coords">
+<code class="sig-prename descclassname">Radio_Astronomy.vla_cal.</code><code class="sig-name descname">get_3C_coords</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#Radio_Astronomy.vla_cal.get_3C_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formatted J2000 right ascension and declination and IAU name</p>
+<p>Returns the formatted J2000 right ascension and declination and IAU name
+given the 3C name.
+Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ra</span><span class="p">,</span><span class="n">dec</span><span class="p">,</span><span class="n">iau</span> <span class="o">=</span> <span class="n">get_3C_coords</span><span class="p">(</span><span class="s1">&#39;3C286&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">ra</span><span class="p">,</span><span class="n">dec</span><span class="p">,</span><span class="n">iau</span>
+<span class="go">13h31m08.287984s 30d30&#39;32.958850&quot; 1331+305</span>
+</pre></div>
+</div>
+<p>:param name : 3C name, like 3C123</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ra, dec, IAU_name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_VLA_calibrators.html" title="get_VLA_calibrators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.fix_IAU_name.html" title="fix_IAU_name"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

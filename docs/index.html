@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Single Dish Radio Astronomy Software Tools &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BB_intensity" href="api/Radio_Astronomy.BB_intensity.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Radio_Astronomy.BB_intensity.html" title="BB_intensity"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Single Dish Radio Astronomy Software Tools</a><ul>
+<li><a class="reference internal" href="#module-Radio_Astronomy">Radio_Astronomy Package</a><ul>
+<li><a class="reference internal" href="#function-groups">Function Groups</a><ul>
+<li><a class="reference internal" href="#antenna">Antenna</a></li>
+<li><a class="reference internal" href="#noise">Noise</a></li>
+<li><a class="reference internal" href="#radio-sources">Radio Sources</a></li>
+<li><a class="reference internal" href="#conversions">Conversions</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Radio_Astronomy.bands">Radio_Astronomy.bands Module</a><ul>
+<li><a class="reference internal" href="#id1">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Radio_Astronomy.michigan">Radio_Astronomy.michigan Module</a><ul>
+<li><a class="reference internal" href="#id2">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Radio_Astronomy.radio_flux">Radio_Astronomy.radio_flux Module</a><ul>
+<li><a class="reference internal" href="#id3">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Radio_Astronomy.vla_cal">Radio_Astronomy.vla_cal Module</a><ul>
+<li><a class="reference internal" href="#administration">Administration</a></li>
+<li><a class="reference internal" href="#user-instructions">User Instructions</a></li>
+<li><a class="reference internal" href="#id4">Functions</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/Radio_Astronomy.BB_intensity.html"
+                        title="next chapter">BB_intensity</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="single-dish-radio-astronomy-software-tools">
+<h1>Single Dish Radio Astronomy Software Tools<a class="headerlink" href="#single-dish-radio-astronomy-software-tools" title="Permalink to this headline">¶</a></h1>
+<p>For an overview of SDRAST and the current status please visit <a class="reference external" href="https://sdrast.github.io/">https://sdrast.github.io/</a>.</p>
+<p>The module has functions that are specific to radio astronomy, as opposed to
+astronomy in general.  They include antenna properties (beam size, efficiency,
+etc.), noise power and temperature, source flux from brightness temperature,
+black body radiation intensity (adopted from the Physics moduele), power unit
+conversions used in electrical engineering, etc.</p>
+<div class="section" id="module-Radio_Astronomy">
+<span id="radio-astronomy-package"></span><h2>Radio_Astronomy Package<a class="headerlink" href="#module-Radio_Astronomy" title="Permalink to this headline">¶</a></h2>
+<p>Radio_astronomy - basic radio astronomy functions</p>
+<div class="section" id="function-groups">
+<h3>Function Groups<a class="headerlink" href="#function-groups" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="antenna">
+<h4>Antenna<a class="headerlink" href="#antenna" title="Permalink to this headline">¶</a></h4>
+<p>Functions for antenna properties:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antenna_gain</span><span class="p">(</span><span class="n">aperture_efficiency</span><span class="p">,</span><span class="n">geometrical_area</span><span class="p">)</span>
+<span class="n">antenna_solid_angle</span><span class="p">(</span><span class="n">aperture_efficiency</span><span class="p">,</span><span class="n">geometrical_area</span><span class="p">,</span><span class="n">wavelength</span><span class="p">)</span>
+<span class="n">antenna_temperature</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span><span class="n">effective_area</span><span class="p">)</span>
+<span class="n">beam_efficiency</span><span class="p">(</span><span class="n">antenna_solid_angle</span><span class="p">,</span> <span class="n">beam_solid_angle</span><span class="p">)</span>
+<span class="n">beam_solid_angle</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="n">directivity</span><span class="p">(</span><span class="n">aperture_efficiency</span><span class="p">,</span> <span class="n">geometrical_area</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">)</span>
+<span class="n">HPBW</span><span class="p">(</span><span class="n">feedtaper</span><span class="p">,</span><span class="n">wavelength</span><span class="p">,</span><span class="n">diameter</span><span class="p">)</span>
+<span class="n">ruze_loss_factor</span><span class="p">(</span><span class="n">surface_rms</span><span class="p">,</span><span class="n">wavelength</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="noise">
+<h4>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">¶</a></h4>
+<p>Functions related noise temperature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antenna_temp</span><span class="p">(</span><span class="n">antenna_gain</span><span class="p">,</span><span class="n">flux_density</span><span class="p">)</span>
+<span class="n">noise_figure</span><span class="p">(</span><span class="n">Tsys</span><span class="p">)</span>
+<span class="n">noise_power</span><span class="p">(</span><span class="n">Tsys</span><span class="p">,</span><span class="n">bandwidth</span><span class="p">)</span>
+<span class="n">rms_noise</span><span class="p">(</span><span class="n">Tsys</span><span class="p">,</span><span class="n">bandwidth</span><span class="p">,</span><span class="n">integration_time</span><span class="p">)</span>
+<span class="n">SNR</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Tsys</span><span class="p">,</span><span class="n">bandwidth</span><span class="p">,</span><span class="n">integration_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="radio-sources">
+<h4>Radio Sources<a class="headerlink" href="#radio-sources" title="Permalink to this headline">¶</a></h4>
+<p>Relating flux, antenna temperature, etc.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flux</span><span class="p">(</span><span class="n">Tb</span><span class="p">,</span><span class="n">freq</span><span class="p">,</span><span class="n">angular_diameter</span><span class="p">)</span>
+<span class="n">janskyPQ</span><span class="p">(</span><span class="n">Jy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conversions">
+<h4>Conversions<a class="headerlink" href="#conversions" title="Permalink to this headline">¶</a></h4>
+<p>Converting between units, log to linear, etc.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dB</span><span class="p">(</span><span class="n">gain</span><span class="p">)</span>
+<span class="n">dBm</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+<span class="n">dbm_to_dbuv</span><span class="p">(</span><span class="n">dbm</span><span class="p">)</span>
+<span class="n">dbuv_to_uV</span><span class="p">(</span><span class="n">dbuv</span><span class="p">)</span>
+<span class="n">dbm_to_v</span><span class="p">(</span><span class="n">dbm</span><span class="p">)</span>
+<span class="n">dBm_to_watts</span><span class="p">(</span><span class="n">dbm</span><span class="p">)</span>
+<span class="n">dbuv_to_dbm</span><span class="p">(</span><span class="n">dbuv</span><span class="p">)</span>
+<span class="n">dbuv_to_dmw_per_sq_m</span><span class="p">(</span><span class="n">dbuv</span><span class="p">)</span>
+<span class="n">dbuv_to_v</span><span class="p">(</span><span class="n">dbuv</span><span class="p">)</span>
+<span class="n">dmw_per_sq_m_to_dbuv</span><span class="p">(</span><span class="n">dbmw</span><span class="p">)</span>
+<span class="n">gain</span><span class="p">(</span><span class="n">dB</span><span class="p">)</span>
+<span class="n">v_to_dbuv</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">volts_to_watts</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v_to_dbm</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">watts_to_volts</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="miscellaneous">
+<h4>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h4>
+<p>Left-overs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">freq_to_chan</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span><span class="n">bandwidth</span><span class="p">,</span><span class="n">n_chans</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.BB_intensity.html#Radio_Astronomy.BB_intensity" title="Radio_Astronomy.BB_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BB_intensity</span></code></a>(T, f)</p></td>
+<td><p>Blackbody radiation intensity, W/m^2/Hz/rad^2, f is in Hz, and T is in K.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.HPBW.html#Radio_Astronomy.HPBW" title="Radio_Astronomy.HPBW"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HPBW</span></code></a>(feedtaper, wavelength, diameter)</p></td>
+<td><p>Half-power beamwidth estimate</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.SNR.html#Radio_Astronomy.SNR" title="Radio_Astronomy.SNR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SNR</span></code></a>(Ta, Tsys, bandwidth, integration_time)</p></td>
+<td><p>Signal-to-noise ratio for a signal Ta relative to the system noise</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.antenna_gain.html#Radio_Astronomy.antenna_gain" title="Radio_Astronomy.antenna_gain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">antenna_gain</span></code></a>(aperture_efficiency, …)</p></td>
+<td><p>Antenna gain in K/Jy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.antenna_solid_angle.html#Radio_Astronomy.antenna_solid_angle" title="Radio_Astronomy.antenna_solid_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">antenna_solid_angle</span></code></a>(aperture_efficiency, …)</p></td>
+<td><p>Antenna solid angle of an antenna, assuming radiation efficiency = 1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.antenna_temp.html#Radio_Astronomy.antenna_temp" title="Radio_Astronomy.antenna_temp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">antenna_temp</span></code></a>(antenna_gain, flux_density)</p></td>
+<td><p>Antenna temperature of a source from flux and antenna gain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.antenna_temperature.html#Radio_Astronomy.antenna_temperature" title="Radio_Astronomy.antenna_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">antenna_temperature</span></code></a>(flux, effective_area)</p></td>
+<td><p>Convert flux to antenna temperature</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.beam_efficiency.html#Radio_Astronomy.beam_efficiency" title="Radio_Astronomy.beam_efficiency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">beam_efficiency</span></code></a>(antenna_solid_angle, …)</p></td>
+<td><p>Fraction of flux in the main beam that registers at the receiver.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.beam_solid_angle.html#Radio_Astronomy.beam_solid_angle" title="Radio_Astronomy.beam_solid_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">beam_solid_angle</span></code></a>(*args)</p></td>
+<td><p>Solid angle of the main beam.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.dB.html#Radio_Astronomy.dB" title="Radio_Astronomy.dB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dB</span></code></a>(gain)</p></td>
+<td><p>Converts a linear gain into dB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.dBm.html#Radio_Astronomy.dBm" title="Radio_Astronomy.dBm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dBm</span></code></a>(power)</p></td>
+<td><p>Converts a power in W to db(milliwatts)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.dBm_to_watts.html#Radio_Astronomy.dBm_to_watts" title="Radio_Astronomy.dBm_to_watts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dBm_to_watts</span></code></a>(dbm)</p></td>
+<td><p>Convert dBm into watts</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbm_to_dbuv.html#Radio_Astronomy.dbm_to_dbuv" title="Radio_Astronomy.dbm_to_dbuv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbm_to_dbuv</span></code></a>(dbm)</p></td>
+<td><p>Convert dB(milliwatts) to dB(microvolts)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbm_to_v.html#Radio_Astronomy.dbm_to_v" title="Radio_Astronomy.dbm_to_v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbm_to_v</span></code></a>(dbm)</p></td>
+<td><p>Convert dBm to V across a 20-ohm load</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbuv_to_dbm.html#Radio_Astronomy.dbuv_to_dbm" title="Radio_Astronomy.dbuv_to_dbm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbuv_to_dbm</span></code></a>(dbuv)</p></td>
+<td><p>Convert dBuv to dBm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbuv_to_dmw_per_sq_m.html#Radio_Astronomy.dbuv_to_dmw_per_sq_m" title="Radio_Astronomy.dbuv_to_dmw_per_sq_m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbuv_to_dmw_per_sq_m</span></code></a>(dbuv)</p></td>
+<td><p>Convert dB(uV) to dB(mW/m^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbuv_to_uV.html#Radio_Astronomy.dbuv_to_uV" title="Radio_Astronomy.dbuv_to_uV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbuv_to_uV</span></code></a>(dbuv)</p></td>
+<td><p>dBuv (dB microvolts) to V (volts)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.dbuv_to_v.html#Radio_Astronomy.dbuv_to_v" title="Radio_Astronomy.dbuv_to_v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbuv_to_v</span></code></a>(dbuv)</p></td>
+<td><p>dBuv (dB microvolts) to V (volts)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.delta_f.html#Radio_Astronomy.delta_f" title="Radio_Astronomy.delta_f"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta_f</span></code></a>(delta_v, frequency)</p></td>
+<td><p>Frequency shift corresponding to a velocity shift.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.directivity.html#Radio_Astronomy.directivity" title="Radio_Astronomy.directivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directivity</span></code></a>(aperture_efficiency, …)</p></td>
+<td><p>Forward gain of an antenna over an isotropic antenna as a factor</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.dmw_per_sq_m_to_dbuv.html#Radio_Astronomy.dmw_per_sq_m_to_dbuv" title="Radio_Astronomy.dmw_per_sq_m_to_dbuv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dmw_per_sq_m_to_dbuv</span></code></a>(dbmw)</p></td>
+<td><p>Convert dB(mW/m^2) to dB(uV)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.flux.html#Radio_Astronomy.flux" title="Radio_Astronomy.flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flux</span></code></a>(Tb, freq, angular_diameter)</p></td>
+<td><p>Flux received from a source</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.forward_gain.html#Radio_Astronomy.forward_gain" title="Radio_Astronomy.forward_gain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_gain</span></code></a>(aperture_efficiency, …)</p></td>
+<td><p>Directivity of an antenna in dB.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.freq_to_chan.html#Radio_Astronomy.freq_to_chan" title="Radio_Astronomy.freq_to_chan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_to_chan</span></code></a>(frequency, bandwidth, n_chans)</p></td>
+<td><p>Returns the channel number where a given frequency is to be found.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.gain.html#Radio_Astronomy.gain" title="Radio_Astronomy.gain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gain</span></code></a>(dB)</p></td>
+<td><p>Convert dB into gain</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.janskyPQ.html#Radio_Astronomy.janskyPQ" title="Radio_Astronomy.janskyPQ"><code class="xref py py-obj docutils literal notranslate"><span class="pre">janskyPQ</span></code></a>(Jy)</p></td>
+<td><p>jansky unit (Jy) as a PhysicalQuantity() class instance</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.noise_figure.html#Radio_Astronomy.noise_figure" title="Radio_Astronomy.noise_figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">noise_figure</span></code></a>(Tsys)</p></td>
+<td><p>Returns the noise figure in dB given a system temperature in K</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.noise_power.html#Radio_Astronomy.noise_power" title="Radio_Astronomy.noise_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">noise_power</span></code></a>(Tsys, bandwidth)</p></td>
+<td><p>Returns the noise power in W</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.rms_noise.html#Radio_Astronomy.rms_noise" title="Radio_Astronomy.rms_noise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rms_noise</span></code></a>(Tsys, bandwidth, integration_time)</p></td>
+<td><p>Receiver r.m.s.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.ruze_loss_factor.html#Radio_Astronomy.ruze_loss_factor" title="Radio_Astronomy.ruze_loss_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ruze_loss_factor</span></code></a>(surface_rms, wavelength)</p></td>
+<td><p>Loss due to reflecting surface irregulaties in a paraboloid</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.standing_wave_spectrum.html#Radio_Astronomy.standing_wave_spectrum" title="Radio_Astronomy.standing_wave_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standing_wave_spectrum</span></code></a>(length, …)</p></td>
+<td><p>Frequency interval between peaks in a spectral pattern from a standing wave</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.v_to_dbm.html#Radio_Astronomy.v_to_dbm" title="Radio_Astronomy.v_to_dbm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v_to_dbm</span></code></a>(V)</p></td>
+<td><p>Volts to dB(mW) for a 50 ohm load</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.v_to_dbuv.html#Radio_Astronomy.v_to_dbuv" title="Radio_Astronomy.v_to_dbuv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v_to_dbuv</span></code></a>(v)</p></td>
+<td><p>Volts to dBuv (dB microvolts)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.volts_to_watts.html#Radio_Astronomy.volts_to_watts" title="Radio_Astronomy.volts_to_watts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volts_to_watts</span></code></a>(V)</p></td>
+<td><p>Volts to watts for a 50 ohm load</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.watts_to_volts.html#Radio_Astronomy.watts_to_volts" title="Radio_Astronomy.watts_to_volts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">watts_to_volts</span></code></a>(W)</p></td>
+<td><p>Watts to volts for a 50 ohm load</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.wavenumber.html#Radio_Astronomy.wavenumber" title="Radio_Astronomy.wavenumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wavenumber</span></code></a>(wvln)</p></td>
+<td><p>Wave number given the wavelength</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.Dipole.html#Radio_Astronomy.Dipole" title="Radio_Astronomy.Dipole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dipole</span></code></a>(length, radius)</p></td>
+<td><p>Dipole antenna</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
+<div class="graphviz"><img src="_images/inheritance-1d1c70141ae708c665fe0939fd99d6aafc5878d7.png" alt="Inheritance diagram of Radio_Astronomy.Dipole" usemap="#inheritance9b999ef1ef" class="inheritance graphviz" /></div>
+<map id="inheritance9b999ef1ef" name="inheritance9b999ef1ef">
+<area shape="rect" id="node1" href="api/Radio_Astronomy.Dipole.html#Radio_Astronomy.Dipole" target="_top" title="Dipole antenna" alt="" coords="5,5,77,31"/>
+</map></div>
+</div>
+<div class="section" id="module-Radio_Astronomy.bands">
+<span id="radio-astronomy-bands-module"></span><h2>Radio_Astronomy.bands Module<a class="headerlink" href="#module-Radio_Astronomy.bands" title="Permalink to this headline">¶</a></h2>
+<p>conversion from waveguide band to frequency and vice-versa</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">Radio_Astronomy.bands</span> <span class="k">import</span> <span class="o">*</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">frequency_to_band</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;S&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">band_to_frequency</span><span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mi">22</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.bands.band_to_frequency.html#Radio_Astronomy.bands.band_to_frequency" title="Radio_Astronomy.bands.band_to_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">band_to_frequency</span></code></a>(band)</p></td>
+<td><p>nominal band center frequency in GHz from band code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.bands.frequency_to_band.html#Radio_Astronomy.bands.frequency_to_band" title="Radio_Astronomy.bands.frequency_to_band"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_to_band</span></code></a>(freq)</p></td>
+<td><p>band code from frequency in GHz</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Radio_Astronomy.michigan">
+<span id="radio-astronomy-michigan-module"></span><h2>Radio_Astronomy.michigan Module<a class="headerlink" href="#module-Radio_Astronomy.michigan" title="Permalink to this headline">¶</a></h2>
+<p>Provides source fluxes from the University of <a class="reference external" href="https://dept.astro.lsa.umich.edu/datasets/umrao.php">Michigan Radio Observatory
+database</a>.</p>
+<p>The MRO radio source catalog was developed from years of monitoring a select
+set of radio sources.  The catalog work was discontinued.</p>
+<p>The description and plots included in the UMRAO web site were last updated on
+August 23, 2012. For questions or for additional data, contact
+<a class="reference external" href="mailto:mfa&#37;&#52;&#48;umich&#46;edu">Margo Aller</a>.</p>
+<div class="section" id="id2">
+<h3>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code>(object[, dtype, copy, order, subok, ndmin])</p></td>
+<td><p>Create an array.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">datestr2num</span></code>(d[, default])</p></td>
+<td><p>Convert a date string to a datenum using <code class="xref py py-func docutils literal notranslate"><span class="pre">dateutil.parser.parse()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.michigan.get_flux_data.html#Radio_Astronomy.michigan.get_flux_data" title="Radio_Astronomy.michigan.get_flux_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_flux_data</span></code></a>(url)</p></td>
+<td><p>Gets the latest data from the Michigan database for a source</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearest_index</span></code>(np_array, value)</p></td>
+<td><p>Return the index of the element of the array with the nearest value</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.michigan.polate_flux.html#Radio_Astronomy.michigan.polate_flux" title="Radio_Astronomy.michigan.polate_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polate_flux</span></code></a>(Jname, datenum, freq)</p></td>
+<td><p>Interpolate or extrapolate flux of source for given date and frequency</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyfit</span></code>(x, y, deg[, rcond, full, w, cov])</p></td>
+<td><p>Least squares polynomial fit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyval</span></code>(p, x)</p></td>
+<td><p>Evaluate a polynomial at specific values.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Radio_Astronomy.radio_flux">
+<span id="radio-astronomy-radio-flux-module"></span><h2>Radio_Astronomy.radio_flux Module<a class="headerlink" href="#module-Radio_Astronomy.radio_flux" title="Permalink to this headline">¶</a></h2>
+<p>Functions to compute fluxes of standard radio sources, the Sun, Venus,
+Jupiter and Saturn. The brightness of the Galactic background emission
+is also provided.</p>
+<p>The origin of the data is given in the documentation for <code class="docutils literal notranslate"><span class="pre">radio_flux</span></code>,
+<code class="docutils literal notranslate"><span class="pre">planet\_brightness</span></code>,  <code class="docutils literal notranslate"><span class="pre">get\_planet\_flux</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">galactic_BG</span></code>.</p>
+<div class="section" id="id3">
+<h3>Functions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.err_func.html#Radio_Astronomy.radio_flux.err_func" title="Radio_Astronomy.radio_flux.err_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">err_func</span></code></a>(p, x, y, yerr, function)</p></td>
+<td><p>Difference between data and a model</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp</span></code></p></td>
+<td><p>Return e raised to the power of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">flux</span></code>(Tb, freq, angular_diameter)</p></td>
+<td><p>Flux received from a source</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.galactic_BG.html#Radio_Astronomy.radio_flux.galactic_BG" title="Radio_Astronomy.radio_flux.galactic_BG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">galactic_BG</span></code></a>(f)</p></td>
+<td><p>Average galactic background temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.get_calibrator_flux.html#Radio_Astronomy.radio_flux.get_calibrator_flux" title="Radio_Astronomy.radio_flux.get_calibrator_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_calibrator_flux</span></code></a>(source, freq, date)</p></td>
+<td><p>Get the flux of a calibrator by name, frequency and date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.get_planet_flux.html#Radio_Astronomy.radio_flux.get_planet_flux" title="Radio_Astronomy.radio_flux.get_planet_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planet_flux</span></code></a>(planet, freq, date)</p></td>
+<td><p>Flux of planet calibrators</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leastsq</span></code>(func, x0[, args, Dfun, full_output, …])</p></td>
+<td><p>Minimize the sum of squares of a set of equations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log10</span></code></p></td>
+<td><p>Return the base 10 logarithm of x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.log_cubic.html#Radio_Astronomy.radio_flux.log_cubic" title="Radio_Astronomy.radio_flux.log_cubic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_cubic</span></code></a>(x, p)</p></td>
+<td><p>2-order polynomial in log(x)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.planet_brightness.html#Radio_Astronomy.radio_flux.planet_brightness" title="Radio_Astronomy.radio_flux.planet_brightness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">planet_brightness</span></code></a>(planet, freq)</p></td>
+<td><p>Brightness temperature of a planet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pow</span></code></p></td>
+<td><p>Return x**y (x to the power of y).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.radio_flux.html#Radio_Astronomy.radio_flux.radio_flux" title="Radio_Astronomy.radio_flux.radio_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radio_flux</span></code></a>(source, freq)</p></td>
+<td><p>Flux density in Jy of standard calibrators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.radio_flux.subearth_longitude.html#Radio_Astronomy.radio_flux.subearth_longitude" title="Radio_Astronomy.radio_flux.subearth_longitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subearth_longitude</span></code></a>(pl)</p></td>
+<td><p>Longitude of planet facing earth from heliocentric longitude</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Radio_Astronomy.vla_cal">
+<span id="radio-astronomy-vla-cal-module"></span><h2>Radio_Astronomy.vla_cal Module<a class="headerlink" href="#module-Radio_Astronomy.vla_cal" title="Permalink to this headline">¶</a></h2>
+<p>Module vla_cal creates or updates files of VLA calibrators and retrieves
+data for a specified calibrator.</p>
+<div class="section" id="administration">
+<h3>Administration<a class="headerlink" href="#administration" title="Permalink to this headline">¶</a></h3>
+<p>It is expected that the pickle files VLA_cals, B_names and 3C_names exist.
+If they do not, the following must be done in the module directory
+<code class="docutils literal notranslate"><span class="pre">/usr/local/lib/python2.6/site-packages/Radio_Astronomy/</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">Radio_Astronomy.vla_cal</span> <span class="k">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cal_data</span> <span class="o">=</span> <span class="n">get_VLA_calibrators</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_VLA_pickle_file</span><span class="p">(</span><span class="n">cal_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Bname_dict</span><span class="p">,</span><span class="n">cat_3C_dict</span> <span class="o">=</span> <span class="n">VLA_name_xref</span><span class="p">(</span><span class="n">cal_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_Bname_pickle_file</span><span class="p">(</span><span class="n">Bname_dict</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_3C_pickle_file</span><span class="p">(</span><span class="n">cat_3C_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>3C_VLA_cals is a convenience.pickle file that provides coordinate data
+keyed to 3C names.  It is created as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_3C_file</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-instructions">
+<h3>User Instructions<a class="headerlink" href="#user-instructions" title="Permalink to this headline">¶</a></h3>
+<p>If you only needs coordinates for a 3C source then this will suffice</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ra</span><span class="p">,</span><span class="n">dec</span><span class="p">,</span><span class="n">jname</span> <span class="o">=</span> <span class="n">get_3C_coords</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you need all the data for a source then do this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_dict</span> <span class="o">=</span> <span class="n">get_cal_data</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>One source of annoyance is that astronomers do not all or always use the same
+designations as NRAO, that is, more or less characters, like b1937+21,
+j0218+4232 and so on.</p>
+<p>IAU source designation recommendations can be found at
+&lt;<a class="reference external" href="http://cdsweb.u-strasbg.fr/Dic/iau-spec.html">http://cdsweb.u-strasbg.fr/Dic/iau-spec.html</a>&gt;</p>
+</div>
+<div class="section" id="id4">
+<h3>Functions<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.IAU_name_parts.html#Radio_Astronomy.vla_cal.IAU_name_parts" title="Radio_Astronomy.vla_cal.IAU_name_parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IAU_name_parts</span></code></a>(name)</p></td>
+<td><p>Returns the declination part of an IAU source name</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.Jnames_to_B.html#Radio_Astronomy.vla_cal.Jnames_to_B" title="Radio_Astronomy.vla_cal.Jnames_to_B"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Jnames_to_B</span></code></a>(Bnames_dict)</p></td>
+<td><p>Returns a dictionary for looking up Bnames given Jnames</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.VLA_name_xref.html#Radio_Astronomy.vla_cal.VLA_name_xref" title="Radio_Astronomy.vla_cal.VLA_name_xref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VLA_name_xref</span></code></a>(cal_data)</p></td>
+<td><p>Make cross-reference lookup for IAU B names and 3C catalog numbers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.fix_IAU_name.html#Radio_Astronomy.vla_cal.fix_IAU_name" title="Radio_Astronomy.vla_cal.fix_IAU_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_IAU_name</span></code></a>(name)</p></td>
+<td><p>Handles cases where the IAU designator is too long or too short.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.get_3C_coords.html#Radio_Astronomy.vla_cal.get_3C_coords" title="Radio_Astronomy.vla_cal.get_3C_coords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_3C_coords</span></code></a>(name)</p></td>
+<td><p>Formatted J2000 right ascension and declination and IAU name</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.get_VLA_calibrators.html#Radio_Astronomy.vla_cal.get_VLA_calibrators" title="Radio_Astronomy.vla_cal.get_VLA_calibrators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_VLA_calibrators</span></code></a>([url])</p></td>
+<td><p>Create a dictionary keyed on J-names of calibrators in the VLA data base.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.get_cal_data.html#Radio_Astronomy.vla_cal.get_cal_data" title="Radio_Astronomy.vla_cal.get_cal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cal_data</span></code></a>(source)</p></td>
+<td><p>Return calibrator data for a source.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.get_cal_dict.html#Radio_Astronomy.vla_cal.get_cal_dict" title="Radio_Astronomy.vla_cal.get_cal_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cal_dict</span></code></a>()</p></td>
+<td><p>Returns the VLA calibrator dictionary</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.get_flux_data.html#Radio_Astronomy.vla_cal.get_flux_data" title="Radio_Astronomy.vla_cal.get_flux_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_flux_data</span></code></a>(src_data)</p></td>
+<td><p>Gets flux as a function of frequency for the source</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.interpolate_flux.html#Radio_Astronomy.vla_cal.interpolate_flux" title="Radio_Astronomy.vla_cal.interpolate_flux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_flux</span></code></a>(freqs, fluxes, freq)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.make_3C_file.html#Radio_Astronomy.vla_cal.make_3C_file" title="Radio_Astronomy.vla_cal.make_3C_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_3C_file</span></code></a>([url])</p></td>
+<td><p>Makes VLA calibrators 3C pickle file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.make_3C_pickle_file.html#Radio_Astronomy.vla_cal.make_3C_pickle_file" title="Radio_Astronomy.vla_cal.make_3C_pickle_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_3C_pickle_file</span></code></a>(names)</p></td>
+<td><p>Create a picke file with a 3C to Jname cross-reference</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.make_Bname_pickle_file.html#Radio_Astronomy.vla_cal.make_Bname_pickle_file" title="Radio_Astronomy.vla_cal.make_Bname_pickle_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_Bname_pickle_file</span></code></a>(Bnames)</p></td>
+<td><p>Create a picke file with a Bname to Jname cross-reference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.make_VLA_pickle_file.html#Radio_Astronomy.vla_cal.make_VLA_pickle_file" title="Radio_Astronomy.vla_cal.make_VLA_pickle_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_VLA_pickle_file</span></code></a>(cals)</p></td>
+<td><p>Put the VLA calibrator dictionary in a pickle file</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Radio_Astronomy.vla_cal.match_IAU_name.html#Radio_Astronomy.vla_cal.match_IAU_name" title="Radio_Astronomy.vla_cal.match_IAU_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">match_IAU_name</span></code></a>(name, name_list)</p></td>
+<td><p>Try to match a short IAU name to one in a catalogue</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyfit</span></code>(x, y, deg[, rcond, full, w, cov])</p></td>
+<td><p>Least squares polynomial fit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">polyval</span></code>(p, x)</p></td>
+<td><p>Evaluate a polynomial at specific values.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The code can be cloned from <a class="reference external" href="https://github.com/SDRAST/Radio_Astronomy">this site</a></p>
+<p>The <a href="#id5"><span class="problematic" id="id6">`documentation &lt;&gt;`_https://sdrast.github.io/Radio_Astronomy/`_</span></a>
+was generated with Sphinx.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Radio_Astronomy.BB_intensity.html" title="BB_intensity"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

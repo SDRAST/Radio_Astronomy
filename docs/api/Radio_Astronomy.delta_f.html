@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>delta_f &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="directivity" href="Radio_Astronomy.directivity.html" />
+    <link rel="prev" title="dbuv_to_v" href="Radio_Astronomy.dbuv_to_v.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.directivity.html" title="directivity"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.dbuv_to_v.html" title="dbuv_to_v"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.dbuv_to_v.html"
+                        title="previous chapter">dbuv_to_v</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.directivity.html"
+                        title="next chapter">directivity</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Radio_Astronomy.delta_f.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="delta-f">
+<h1>delta_f<a class="headerlink" href="#delta-f" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Radio_Astronomy.delta_f">
+<code class="sig-prename descclassname">Radio_Astronomy.</code><code class="sig-name descname">delta_f</code><span class="sig-paren">(</span><em class="sig-param">delta_v</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#Radio_Astronomy.delta_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency shift corresponding to a velocity shift.</p>
+<dl>
+<dt>For example, 1 km/s = 74 kHz at 22 GHz water line and 6 kHz at the OH line::</dt><dd><p>In [1]: from Radio_Astronomy import *</p>
+<p>In [2]: delta_f(1e3,22.235e9)/1e3
+Out[2]: 74.167976567309097</p>
+<p>In [3]: delta_f(1e3,1776e6)/1e3
+Out[3]: 5.9240983307191799</p>
+</dd>
+</dl>
+<p>:param delta_v : velocity in m/s</p>
+<p>:param frequency : rest frequency in Hz</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>frequency shift in Hz</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.directivity.html" title="directivity"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.dbuv_to_v.html" title="dbuv_to_v"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

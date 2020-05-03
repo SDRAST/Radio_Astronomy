@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>get_calibrator_flux &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_planet_flux" href="Radio_Astronomy.radio_flux.get_planet_flux.html" />
+    <link rel="prev" title="galactic_BG" href="Radio_Astronomy.radio_flux.galactic_BG.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.radio_flux.get_planet_flux.html" title="get_planet_flux"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.radio_flux.galactic_BG.html" title="galactic_BG"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.radio_flux.galactic_BG.html"
+                        title="previous chapter">galactic_BG</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.radio_flux.get_planet_flux.html"
+                        title="next chapter">get_planet_flux</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Radio_Astronomy.radio_flux.get_calibrator_flux.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="get-calibrator-flux">
+<h1>get_calibrator_flux<a class="headerlink" href="#get-calibrator-flux" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Radio_Astronomy.radio_flux.get_calibrator_flux">
+<code class="sig-prename descclassname">Radio_Astronomy.radio_flux.</code><code class="sig-name descname">get_calibrator_flux</code><span class="sig-paren">(</span><em class="sig-param">source</em>, <em class="sig-param">freq</em>, <em class="sig-param">date</em><span class="sig-paren">)</span><a class="headerlink" href="#Radio_Astronomy.radio_flux.get_calibrator_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the flux of a calibrator by name, frequency and date.</p>
+<p>This first tries to see if a planet matches and if so computes the flux
+for that.  It then tries a 3C catalogue name.  If there is a match, it
+tries to find it in the Michigan catalogue and interpolates or extrapolates
+the flux from that.  Otherwise, it tries to find it in the VLA calibrator
+catalogue.</p>
+<p>It does not yet handle ‘B’ or ‘J-‘ IAU names, though that would be a
+trivial extension.  The Michigan catalogue uses ‘B’ names.</p>
+<p>:param source : name of calibrator
+:type  source : str</p>
+<p>:param freq : frequency in GHz
+:type  freq : float</p>
+<p>:param date : date for flux estimate, for variable sources
+:type  date : datetime.datetime() instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>flyx in Jy (float) and origin of flux data (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.radio_flux.get_planet_flux.html" title="get_planet_flux"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.radio_flux.galactic_BG.html" title="galactic_BG"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

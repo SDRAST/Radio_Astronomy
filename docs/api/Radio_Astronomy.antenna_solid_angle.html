@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>antenna_solid_angle &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="antenna_temp" href="Radio_Astronomy.antenna_temp.html" />
+    <link rel="prev" title="antenna_gain" href="Radio_Astronomy.antenna_gain.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.antenna_temp.html" title="antenna_temp"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.antenna_gain.html" title="antenna_gain"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.antenna_gain.html"
+                        title="previous chapter">antenna_gain</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.antenna_temp.html"
+                        title="next chapter">antenna_temp</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Radio_Astronomy.antenna_solid_angle.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="antenna-solid-angle">
+<h1>antenna_solid_angle<a class="headerlink" href="#antenna-solid-angle" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Radio_Astronomy.antenna_solid_angle">
+<code class="sig-prename descclassname">Radio_Astronomy.</code><code class="sig-name descname">antenna_solid_angle</code><span class="sig-paren">(</span><em class="sig-param">aperture_efficiency</em>, <em class="sig-param">geometrical_area</em>, <em class="sig-param">wavelength</em><span class="sig-paren">)</span><a class="headerlink" href="#Radio_Astronomy.antenna_solid_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Antenna solid angle of an antenna, assuming radiation efficiency = 1</p>
+<p>Krauss, Radio Astronomy, sec. 6-2, cals this the beam solid angle.</p>
+<p>Given the aperture efficiency (dimensionless) and the geometrical
+area and wavelength in the same units (say, meters), this returns the
+beam solid angle in steradians.</p>
+<p>If the antenna has some losses, like not being totally reflective,
+then the radiation efficiency is not 1 and it should be multiplied
+with this result.</p>
+<p>:param aperture_efficiency :
+:type  aperture_efficiency : float</p>
+<p>:param geometrical_area : typically pi*(diam/2)^2, same units as wavelength
+:type  geometrical_area : float</p>
+<p>:param wavelength : same units as antenna  diameter
+:type  wavelength : float</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.antenna_temp.html" title="antenna_temp"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.antenna_gain.html" title="antenna_gain"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

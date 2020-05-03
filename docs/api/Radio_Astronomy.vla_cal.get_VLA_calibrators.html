@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>get_VLA_calibrators &#8212; Radio_Astronomy 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_cal_data" href="Radio_Astronomy.vla_cal.get_cal_data.html" />
+    <link rel="prev" title="get_3C_coords" href="Radio_Astronomy.vla_cal.get_3C_coords.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_cal_data.html" title="get_cal_data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_3C_coords.html" title="get_3C_coords"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.vla_cal.get_3C_coords.html"
+                        title="previous chapter">get_3C_coords</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Radio_Astronomy.vla_cal.get_cal_data.html"
+                        title="next chapter">get_cal_data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Radio_Astronomy.vla_cal.get_VLA_calibrators.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="get-vla-calibrators">
+<h1>get_VLA_calibrators<a class="headerlink" href="#get-vla-calibrators" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="Radio_Astronomy.vla_cal.get_VLA_calibrators">
+<code class="sig-prename descclassname">Radio_Astronomy.vla_cal.</code><code class="sig-name descname">get_VLA_calibrators</code><span class="sig-paren">(</span><em class="sig-param">url='http://www.vla.nrao.edu/astro/calib/manual/csource.html'</em><span class="sig-paren">)</span><a class="headerlink" href="#Radio_Astronomy.vla_cal.get_VLA_calibrators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary keyed on J-names of calibrators in the VLA data base.</p>
+<p>Entries in the VLA database are separated by spaces. This is a typical entry:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0001</span><span class="o">+</span><span class="mi">192</span>   <span class="n">J2000</span>  <span class="n">A</span> <span class="mi">00</span><span class="n">h01m08</span><span class="o">.</span><span class="mi">621563</span><span class="n">s</span>  <span class="mi">19</span><span class="n">d14</span><span class="s1">&#39;33.801860&quot;  Aug01  JVAS</span>
+<span class="mi">2358</span><span class="o">+</span><span class="mi">189</span>   <span class="n">B1950</span>  <span class="n">A</span> <span class="mi">23</span><span class="n">h58m34</span><span class="o">.</span><span class="mi">865400</span><span class="n">s</span>  <span class="mi">18</span><span class="n">d57</span><span class="s1">&#39;51.753000&quot;</span>
+<span class="o">-----------------------------------------------------</span>
+<span class="n">BAND</span>        <span class="n">A</span> <span class="n">B</span> <span class="n">C</span> <span class="n">D</span>    <span class="n">FLUX</span><span class="p">(</span><span class="n">Jy</span><span class="p">)</span>    <span class="n">UVMIN</span><span class="p">(</span><span class="n">kL</span><span class="p">)</span>  <span class="n">UVMAX</span><span class="p">(</span><span class="n">kL</span><span class="p">)</span>
+<span class="o">=====================================================</span>
+<span class="mf">0.7</span><span class="n">cm</span>    <span class="n">Q</span>  <span class="n">W</span> <span class="n">W</span> <span class="n">W</span> <span class="n">W</span>       <span class="mf">0.18</span>
+
+<span class="n">These</span> <span class="n">data</span> <span class="n">are</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">this</span> <span class="nb">format</span><span class="p">:</span>
+<span class="n">cals</span><span class="p">[</span><span class="s1">&#39;0001+192&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;bname&#39;</span><span class="p">:</span> <span class="s1">&#39;2358+189&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">:</span> <span class="mf">19.24272273888889</span><span class="p">,</span>
+                    <span class="s1">&#39;mm7&#39;</span><span class="p">:</span> <span class="mf">0.17999999999999999</span><span class="p">,</span> <span class="s1">&#39;ra&#39;</span><span class="p">:</span> <span class="mf">0.019061545277777779</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>:param url : URL of the VLA calibrator source list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary of dictionaries</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_cal_data.html" title="get_cal_data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Radio_Astronomy.vla_cal.get_3C_coords.html" title="get_3C_coords"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Radio_Astronomy 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>
